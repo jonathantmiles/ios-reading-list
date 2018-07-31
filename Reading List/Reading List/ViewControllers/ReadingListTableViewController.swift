@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReadingListTableViewController: UITableViewController {
+class ReadingListTableViewController: UITableViewController, BookTableViewCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,24 +28,27 @@ class ReadingListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        if section == 0 {
+            return bookController.readBooks.count
+        } else { // for section == 1; written this way to be exhaustive and satisfy the compiler
+            return bookController.unreadBooks.count
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
-        // Configure the cell...
+        guard let bookCell = cell as? BookTableViewCell else { return cell }
 
-        return cell
+        return bookCell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,4 +95,25 @@ class ReadingListTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Original Functions
+    
+    func toggleHasBeenRead(for cell: BookTableViewCell) { 
+        guard let index = tableView.indexPath(for: cell) else { return }
+        let book = bookFor(indexPath: index)
+        bookController.updateHasBeenRead(for: book)
+        tableView.reloadData()
+    }
+    
+    private func bookFor(indexPath: IndexPath) -> Book {
+        if indexPath.section == 0 {
+            return bookController.readBooks[indexPath.row]
+        } else {
+            return bookController.unreadBooks[indexPath.row]
+        }
+    }
+    
+    // MARK: - Properties
+    
+    var bookController = BookController()
+    
 }

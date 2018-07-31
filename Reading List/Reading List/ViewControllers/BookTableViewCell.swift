@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookTableViewCell: UITableViewCell, BookTableViewCellDelegate {
+class BookTableViewCell: UITableViewCell {
 
     func updateViews () {
         guard let title = book?.title,
@@ -22,13 +22,15 @@ class BookTableViewCell: UITableViewCell, BookTableViewCellDelegate {
     }
     
     @IBAction func checkIsRead(_ sender: Any) {
-        toggleHasBeenRead(for: self) 
+        delegate?.toggleHasBeenRead(for: self)
     }
     
     // MARK: - Properties
     
     var book: Book? {
-        updateViews()
+        didSet{
+            updateViews()
+        }
     }
     
     weak var delegate: BookTableViewCellDelegate?
