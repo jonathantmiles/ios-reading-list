@@ -22,6 +22,26 @@ class BookDetailViewController: UIViewController {
     }
     
     @IBAction func saveBook(_ sender: Any) {
+        guard let title = book?.title,
+            let reasonToRead = book?.reasonToRead else { return }
+        if book != nil {
+            guard let book = book else { return }
+            bookController?.updateBookParameters(for: book, toTitle: title, reasonToRead: reasonToRead)
+        } else {
+            bookController?.createBook(withTitle: title, reasonToRead: reasonToRead)
+        }
+    }
+    
+    private func updateViews() {
+        if book != nil {
+            guard let title = book?.title,
+                let reasonToRead = book?.reasonToRead else { return }
+            titleTextField.text = title
+            reasonTextView.text = reasonToRead
+            self.title = title
+        } else {
+            self.title = "Add a new book"
+        }
     }
     
     /*
@@ -35,6 +55,10 @@ class BookDetailViewController: UIViewController {
     */
 
     // MARK: - Properties
+    
+    var bookController: BookController?
+    
+    var book: Book?
     
     @IBOutlet weak var titleTextField: UITextField!
     
