@@ -45,30 +45,28 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
         guard let bookCell = cell as? BookTableViewCell else { return cell }
-
+        bookCell.delegate = self
+        
         return bookCell
     }
+   
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let book = bookFor(indexPath: indexPath)
+            bookController.deleteBook(book: book)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Read Books"
+        } else {
+            return "Unread Books"
+        }
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -97,7 +95,7 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
 
     // MARK: - Original Functions
     
-    func toggleHasBeenRead(for cell: BookTableViewCell) { 
+    func toggleHasBeenRead(for cell: BookTableViewCell) {
         guard let index = tableView.indexPath(for: cell) else { return }
         let book = bookFor(indexPath: index)
         bookController.updateHasBeenRead(for: book)
