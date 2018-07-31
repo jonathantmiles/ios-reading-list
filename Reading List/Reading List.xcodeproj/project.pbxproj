@@ -12,6 +12,11 @@
 		4669416E2110E22B00E7FF73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4669416C2110E22B00E7FF73 /* Main.storyboard */; };
 		466941702110E22B00E7FF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4669416F2110E22B00E7FF73 /* Assets.xcassets */; };
 		466941732110E22B00E7FF73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466941712110E22B00E7FF73 /* LaunchScreen.storyboard */; };
+		F836B7AC2110EB74004DE72B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836B7AB2110EB74004DE72B /* Book.swift */; };
+		F836B7AE2110EC7C004DE72B /* BookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836B7AD2110EC7C004DE72B /* BookController.swift */; };
+		F836B7B02110F93C004DE72B /* ReadingListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836B7AF2110F93C004DE72B /* ReadingListTableViewController.swift */; };
+		F836B7B22110F958004DE72B /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836B7B12110F958004DE72B /* BookTableViewCell.swift */; };
+		F836B7B42110FA41004DE72B /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836B7B32110FA41004DE72B /* BookDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		4669416F2110E22B00E7FF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		466941722110E22B00E7FF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		466941742110E22B00E7FF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F836B7AB2110EB74004DE72B /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		F836B7AD2110EC7C004DE72B /* BookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookController.swift; sourceTree = "<group>"; };
+		F836B7AF2110F93C004DE72B /* ReadingListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingListTableViewController.swift; sourceTree = "<group>"; };
+		F836B7B12110F958004DE72B /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		F836B7B32110FA41004DE72B /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,11 @@
 				4669416A2110E22B00E7FF73 /* ViewController.swift */,
 				4669416C2110E22B00E7FF73 /* Main.storyboard */,
 				4669416F2110E22B00E7FF73 /* Assets.xcassets */,
+				F836B7AB2110EB74004DE72B /* Book.swift */,
+				F836B7AD2110EC7C004DE72B /* BookController.swift */,
+				F836B7AF2110F93C004DE72B /* ReadingListTableViewController.swift */,
+				F836B7B12110F958004DE72B /* BookTableViewCell.swift */,
+				F836B7B32110FA41004DE72B /* BookDetailViewController.swift */,
 				466941712110E22B00E7FF73 /* LaunchScreen.storyboard */,
 				466941742110E22B00E7FF73 /* Info.plist */,
 			);
@@ -136,7 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4669416B2110E22B00E7FF73 /* ViewController.swift in Sources */,
+				F836B7B02110F93C004DE72B /* ReadingListTableViewController.swift in Sources */,
 				466941692110E22A00E7FF73 /* AppDelegate.swift in Sources */,
+				F836B7AE2110EC7C004DE72B /* BookController.swift in Sources */,
+				F836B7B42110FA41004DE72B /* BookDetailViewController.swift in Sources */,
+				F836B7B22110F958004DE72B /* BookTableViewCell.swift in Sources */,
+				F836B7AC2110EB74004DE72B /* Book.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
