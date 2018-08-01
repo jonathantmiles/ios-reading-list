@@ -10,21 +10,10 @@ import UIKit
 
 class ReadingListTableViewController: UITableViewController, BookTableViewCellDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,13 +34,13 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
         guard let bookCell = cell as? BookTableViewCell else { return cell }
+        bookCell.book = bookFor(indexPath: indexPath)
+            
         bookCell.delegate = self
         
         return bookCell
     }
    
-    
-
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let book = bookFor(indexPath: indexPath)
@@ -68,30 +57,24 @@ class ReadingListTableViewController: UITableViewController, BookTableViewCellDe
         }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
+        if segue.identifier == "AddNewBook" {
+            guard let destVC = segue.destination as? BookDetailViewController else { return }
+            destVC.bookController = bookController
+        } else if segue.identifier == "ShowBookDetail" {
+            guard let destVC = segue.destination as? BookDetailViewController else { return }
+            destVC.bookController = bookController
+            guard let index = tableView.indexPathForSelectedRow else { return }
+            destVC.book = bookFor(indexPath: index)
+        }
+        
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
     // MARK: - Original Functions
     

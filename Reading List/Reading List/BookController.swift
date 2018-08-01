@@ -10,6 +10,10 @@ import Foundation
 
 class BookController {
     
+    init() {
+        loadFromPersistentStore()
+    }
+    
     func saveToPersistentStore() {
         guard let url = readingListURL else { return }
         
@@ -23,7 +27,8 @@ class BookController {
     }
     
     func loadFromPersistentStore() {
-        guard let url = readingListURL else { return }
+        let fm = FileManager.default
+        guard let url = readingListURL, fm.fileExists(atPath: url.path) else { return }
         do {
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()
@@ -47,8 +52,8 @@ class BookController {
     
     func updateHasBeenRead(for book: Book) { // toggles hasBeenRead
         var book = book
-        book.hasBeenRead = !book.hasBeenRead
         guard let index = books.index(of: book) else { return }
+        book.hasBeenRead = !book.hasBeenRead
         books.remove(at: index)
         books.insert(book, at: index)
         
@@ -57,9 +62,9 @@ class BookController {
     
     func updateBookParameters(for book: Book, toTitle title: String, reasonToRead: String) {
         var book = book
+        guard let index = books.index(of: book) else { return }
         book.title = title
         book.reasonToRead = reasonToRead
-        guard let index = books.index(of: book) else { return }
         books.remove(at: index)
         books.insert(book, at: index)
         

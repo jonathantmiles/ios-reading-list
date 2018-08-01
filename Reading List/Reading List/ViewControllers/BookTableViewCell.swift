@@ -11,12 +11,11 @@ import UIKit
 class BookTableViewCell: UITableViewCell {
 
     func updateViews () {
-        guard let title = book?.title,
-            let hasBeenRead = book?.hasBeenRead else { return }
-        bookTitleLabel.text = title
-        if hasBeenRead == true {
+        guard let book = book else { return }
+        bookTitleLabel.text = book.title
+        if book.hasBeenRead == true {
             isReadChecked.setImage(UIImage(named: "checked"), for: .normal)
-        } else if hasBeenRead == false {
+        } else if book.hasBeenRead == false {
             isReadChecked.setImage(UIImage(named: "unchecked"), for: .normal)
         }
     }
